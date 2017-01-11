@@ -14,6 +14,11 @@ module.exports = function (queueConnectionString, logLevel = 'TRACE') {
     /*
     * Creates a queue if it does not already exist
     */
+    deleteQueue: Promise.promisify(
+      queue_service.deleteQueue,
+      { context: queue_service }
+    ),
+
     createQueueIfNotExists: Promise.promisify(
       queue_service.createQueueIfNotExists,
       { context: queue_service }
